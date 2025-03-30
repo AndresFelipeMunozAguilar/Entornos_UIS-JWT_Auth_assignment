@@ -1,10 +1,10 @@
-package com.andres.jwt.backend;
+package com.uis.jwt_auth_login;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BackendApplicationTests {
+class JwtAuthLoginApplicationTests {
 
 	@Test
 	void contextLoads() {

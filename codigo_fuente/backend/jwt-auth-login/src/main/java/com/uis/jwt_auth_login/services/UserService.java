@@ -8,6 +8,8 @@ import com.uis.jwt_auth_login.exceptions.AppException;
 import com.uis.jwt_auth_login.mappers.UserMapper;
 import com.uis.jwt_auth_login.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,8 +22,13 @@ import java.util.Optional;
 @Service
 public class UserService {
 
+    @Autowired
     private final UserRepository userRepository;
+
+    @Autowired
     private final UserMapper userMapper;
+
+    @Autowired
     private final PasswordEncoder passwordEncoder;
 
     public UserDto findByLogin(String login) {

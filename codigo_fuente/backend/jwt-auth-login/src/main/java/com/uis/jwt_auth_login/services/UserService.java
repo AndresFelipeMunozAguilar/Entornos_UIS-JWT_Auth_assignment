@@ -41,14 +41,11 @@ public class UserService {
     public UserDto login(CredentialsDto credentialsDto) {
         User user = userRepository.findByLogin(credentialsDto.getLogin())
                 .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
-        if (passwordEncoder.matches(CharBuffer.wrap(credentialsDto.getPassword()),
-                Arrays.toString(user.getPassword()))) {
+
+        if (passwordEncoder.matches(CharBuffer.wrap(credentialsDto.getPassword()), user.getPassword())) {
             return userMapper.toUserDto(user);
-
         }
-
         throw new AppException("Invalid password", HttpStatus.BAD_REQUEST);
-
     }
 
     public UserDto register(SignUpDto userDto) {
@@ -59,12 +56,10 @@ public class UserService {
         }
 
         User user = userMapper.signUpToUser(userDto);
-
-        user.setPassword(passwordEncoder.encode(CharBuffer.wrap(userDto.getPassword())).toCharArray());
+        user.setPassword(passwordEncoder.encode(CharBuffer.wrap(userDto.getPassword())));
 
         User savedUser = userRepository.save(user);
 
-        return userMapper.toUserDto(user);
-
+        return userMapper.toUserDto(savedUser);
     }
 }

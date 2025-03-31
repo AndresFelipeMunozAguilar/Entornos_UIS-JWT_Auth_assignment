@@ -26,5 +26,5 @@ public class User {
     private String login;
 
     @Column(nullable = false)
-    private char[] password;
+    private String password;
 }

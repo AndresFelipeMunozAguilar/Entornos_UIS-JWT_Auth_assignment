@@ -2,8 +2,12 @@ import * as React from 'react'
 import WelcomeContent from './WelcomeContent'
 import AuthContent from './AuthContent'
 import LoginForm from './LoginForm'
-import { request } from '../axios_helper'
+import { request, setAuthToken, resetAuthToken } from '../axios_helper'
 import Buttons from './Buttons'
+
+window.onload = function () {
+  resetAuthToken()
+}
 
 export default class AppContent extends React.Component {
 
@@ -34,6 +38,7 @@ export default class AppContent extends React.Component {
     ).then(
       (response) => {
         this.setState({ componentToShow: "messages" })
+        setAuthToken(response.data.token)
       }
     ).catch(
       (error) => {
@@ -58,6 +63,7 @@ export default class AppContent extends React.Component {
     ).then(
       (response) => {
         this.setState({ componentToShow: "messages" })
+        setAuthToken(response.data.token)
       }
     ).catch(
       (error) => {

@@ -1,0 +1,23 @@
+security.jwt.token.secret-key: my-secret-key
+
+
+spring:
+  datasource:
+    #platform: postgres <------ Deprecado, lo eliminamos, pues 
+                                # spring.datasource.driver-class-name 
+                                # ya define el uso de PostgreSQL.
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/backenddb
+    username: postgres
+    password: Contrasena456!
+    #initialization-mode: always  <------ Deprecado, lo eliminamos
+
+  sql:
+    init:
+      mode: always  # Reemplazo de `spring.datasource.initialization-mode`
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+    hibernate:
+      ddl-auto: create
